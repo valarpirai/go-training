@@ -1,7 +1,7 @@
-package main
+package mytest
 
 import "fmt"
 
-func main() {
+func Test() {
 	fmt.Println("Download test")
 }

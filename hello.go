@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/jochasinga/requests"
 	"sync"
 	"time"
+
+	"./mytest"
+	"github.com/jochasinga/requests"
 )
 
 func main() {
@@ -16,6 +18,8 @@ func main() {
 
 	go printNum()
 	// printNum()
+
+	mytest.Test()
 
 	wg.Add(1)
 	go func() {
@@ -38,7 +42,9 @@ func main() {
 
 		// Helper method
 		htmlStr := res.String()
-		fmt.Println(htmlStr)
+		// fmt.Println(htmlStr)
+
+		printResponse(htmlStr)
 	}()
 
 	wg.Wait()
@@ -47,6 +53,11 @@ func main() {
 func printNum() {
 	for i := 0; i < 10; i++ {
 		fmt.Println(i)
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(10 * time.Millisecond)
 	}
+}
+
+func printResponse(jsonStr string) {
+	// fmt.Println(jsonStr)
+
 }
