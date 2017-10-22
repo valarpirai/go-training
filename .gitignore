@@ -3,7 +3,6 @@
 *.dll
 *.so
 *.dylib
-*.txt
 
 # Test binary, build with `go test -c`
 *.test
@@ -15,3 +14,4 @@
 .glide/
 
 vendor/
+data/

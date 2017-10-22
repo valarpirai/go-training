@@ -20,15 +20,18 @@ type Page struct {
 	Body  []byte
 }
 
+var DATA_DIR = "data/"
+var TEMPLATE_DIR = "templates/"
+
 // Save contents to a TEXT file
 func (p *Page) save() error {
-	filename := p.Title + ".txt"
+	filename := DATA_DIR + p.Title + ".txt"
 	return ioutil.WriteFile(filename, p.Body, 0600)
 }
 
 // Load contents from the text file
 func loadPage(title string) (*Page, error) {
-	filename := title + ".txt"
+	filename := DATA_DIR + title + ".txt"
 	body, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, err
@@ -67,7 +70,7 @@ func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
 	http.Redirect(w, r, "/view/"+title, http.StatusFound)
 }
 
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+var templates = template.Must(template.ParseGlob(TEMPLATE_DIR + "*"))
 
 // Render templates
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
