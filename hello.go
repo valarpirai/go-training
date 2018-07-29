@@ -17,7 +17,7 @@ func main() {
 	fmt.Println("My First Go Program!")
 
 	go printNum()
-	// printNum()
+	go printNum()
 
 	mytest.Test()
 
